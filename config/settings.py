@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'django_browser_reload',
 ]
 
+AUTH_USER_MODEL = 'users.User'
+
 TAILWIND_APP_NAME = 'frontend'
 
 INTERNAL_IPS = [
@@ -51,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_browser_reload.middleware.BrowserReloadMiddleware',
+    'users.middleware.CheckFirstLoginMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -58,7 +61,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
